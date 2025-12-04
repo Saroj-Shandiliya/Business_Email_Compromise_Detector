@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Gmail BEC Detector (POC)",
+  "version": "1.0",
+  "description": "Detects potential Business Email Compromise in Gmail.",
+  "permissions": ["storage", "scripting", "activeTab","notifications","alarms"],
+  "host_permissions": ["https://mail.google.com/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "content_scripts": [
+  {
+    "matches": ["https://mail.google.com/*"],
+    "js": ["content.js"],
+    "run_at": "document_idle",
+    "all_frames": true
+  }
+]
+}
